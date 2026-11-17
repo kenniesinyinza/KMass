@@ -70,8 +70,45 @@
     <section class="contact" id="contact">
         <h2>Let's <span>Connect</span></h2>
         <p>Have a project or opportunity? Feel free to reach out.</p>
-        <a href="mailto:your@email.com" class="btn">Email Me</a>
+
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Comment</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Send Message</button>
+        </form>
     </section>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            const subject = encodeURIComponent('New contact message from ' + name);
+            const body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n\n' +
+                'Message:\n' + message
+            );
+
+            window.location.href = 'mailto:your@email.com?subject=' + subject + '&body=' + body;
+        });
+    </script>
 
     <footer>
         <p>© 2026 Kenny Sinyinza. All Rights Reserved.</p>

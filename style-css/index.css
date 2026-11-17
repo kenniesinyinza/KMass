@@ -175,6 +175,55 @@ nav a:hover {
     margin-bottom: 25px;
 }
 
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #121b2d;
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid #00d4ff;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #2a3b5d;
+    background: #0d1525;
+    color: white;
+    font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #00d4ff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form .btn {
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
 /* FOOTER */
 footer {
     text-align: center;
