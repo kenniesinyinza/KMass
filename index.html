@@ -60,10 +60,33 @@
         <h2>My <span>Skills</span></h2>
 
         <div class="skill-container">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">Video editor</div>
-            <div class="skill">Problem Solving</div>
+            <button class="skill-card" type="button" aria-expanded="false">
+                <span class="skill-number">01</span>
+                <span class="skill-name">HTML</span>
+                <span class="skill-level"><span style="--level: 85%"></span></span>
+                <span class="skill-detail">Semantic, accessible and well-structured web pages.</span>
+            </button>
+
+            <button class="skill-card" type="button" aria-expanded="false">
+                <span class="skill-number">02</span>
+                <span class="skill-name">CSS</span>
+                <span class="skill-level"><span style="--level: 80%"></span></span>
+                <span class="skill-detail">Responsive layouts, animations and modern page design.</span>
+            </button>
+
+            <button class="skill-card" type="button" aria-expanded="false">
+                <span class="skill-number">03</span>
+                <span class="skill-name">Video editing</span>
+                <span class="skill-level"><span style="--level: 75%"></span></span>
+                <span class="skill-detail">Creative cuts, pacing, effects and engaging visual stories.</span>
+            </button>
+
+            <button class="skill-card" type="button" aria-expanded="false">
+                <span class="skill-number">04</span>
+                <span class="skill-name">Problem solving</span>
+                <span class="skill-level"><span style="--level: 90%"></span></span>
+                <span class="skill-detail">Breaking down challenges and finding practical solutions.</span>
+            </button>
         </div>
     </section>
 
@@ -92,6 +115,40 @@
     </section>
 
     <script>
+        const skillsSection = document.querySelector('.skills');
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    skillsSection.classList.add('visible');
+                    skillObserver.unobserve(skillsSection);
+                }
+            });
+        }, { threshold: 0.25 });
+
+        skillObserver.observe(skillsSection);
+
+        skillCards.forEach((card) => {
+            card.addEventListener('click', () => {
+                skillCards.forEach((otherCard) => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('active');
+                        otherCard.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                const isActive = card.classList.toggle('active');
+                card.setAttribute('aria-expanded', String(isActive));
+            });
+
+            card.addEventListener('mousemove', (event) => {
+                const bounds = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', (event.clientX - bounds.left) + 'px');
+                card.style.setProperty('--mouse-y', (event.clientY - bounds.top) + 'px');
+            });
+        });
+
         document.getElementById('contactForm').addEventListener('submit', function (event) {
             event.preventDefault();
 

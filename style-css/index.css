@@ -153,21 +153,107 @@ nav a:hover {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 22px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.skill {
-    padding: 18px 30px;
-    background: #151e30;
+.skill-card {
+    position: relative;
+    width: 220px;
+    min-height: 190px;
+    padding: 24px;
+    background: linear-gradient(145deg, #171f31, #101625);
     border: 1px solid #00d4ff;
-    border-radius: 10px;
-    transition: 0.3s;
+    border-radius: 14px;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-.skill:hover {
+.skill-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), #00d4ff28, transparent 42%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.skill-card:hover::before,
+.skill-card:focus-visible::before,
+.skill-card.active::before {
+    opacity: 1;
+}
+
+.skill-card:hover,
+.skill-card:focus-visible,
+.skill-card.active {
+    transform: translateY(-8px);
+    border-color: white;
+    box-shadow: 0 16px 35px #00d4ff20;
+    outline: none;
+}
+
+.skill-number,
+.skill-name,
+.skill-level,
+.skill-detail {
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+
+.skill-number {
+    color: #00d4ff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.skill-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.skill-level {
+    width: 100%;
+    height: 5px;
+    background: #29364d;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-level span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
     background: #00d4ff;
-    color: #0b0f19;
-    transform: translateY(-5px);
+    transition: width 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.skills.visible .skill-level span {
+    width: var(--level);
+}
+
+.skill-detail {
+    max-height: 0;
+    opacity: 0;
+    color: #bdc7d8;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 0;
+    transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;
+}
+
+.skill-card.active .skill-detail {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 16px;
 }
 
 /* CONTACT */
